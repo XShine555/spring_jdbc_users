@@ -9,5 +9,4 @@ public class AccesdadesRa2Ac1Application {
 	public static void main(String[] args) {
 		SpringApplication.run(AccesdadesRa2Ac1Application.class, args);
 	}
-
 }

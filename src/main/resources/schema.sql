@@ -1,16 +1,11 @@
---DROP TABLE IF EXISTS students;
-CREATE TABLE students (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(100) NOT NULL,
-    cognom VARCHAR(100),
-    age INT NOT NULL CHECK (age > 0),
-    cicle VARCHAR(100) NOT NULL,
-    any INT NOT NULL CHECK (any >= 0)
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    password VARCHAR(100) NOT NULL,
+    ultim_acces TIMESTAMP NULL,
+    data_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
---DROP TABLE IF EXISTS customers;
---CREATE TABLE customers (
---    id BIGINT AUTO_INCREMENT PRIMARY KEY,
---    name VARCHAR(100) NOT NULL,
---    age INT DEFAULT 0
---);
