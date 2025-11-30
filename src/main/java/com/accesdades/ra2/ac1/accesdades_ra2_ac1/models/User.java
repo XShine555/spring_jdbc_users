@@ -98,7 +98,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("User{id=%d, name='%s', description='%s', email='%s', password='%s', ultimAcces='%s', dataCreated='%s', dataUpdated='%s'}",
-                id, name, description, email, password, ultimAcces, dataCreated, dataUpdated);
+        return String.format("User{id=%d, name='%s', description='%s', email='%s', password='%s', image_path='%s', ultimAcces='%s', dataCreated='%s', dataUpdated='%s'}",
+                id, name, description, email, password, image_path, ultimAcces, dataCreated, dataUpdated);
     }
 }

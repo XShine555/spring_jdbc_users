@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.accesdades.ra2.ac1.accesdades_ra2_ac1.models.User;
@@ -13,6 +14,7 @@ import com.accesdades.ra2.ac1.accesdades_ra2_ac1.repository.UserRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Service
 public class UserService {
     private static final String IMAGE_UPLOAD_DIR = "private/images/";
     private static final String CSV_UPLOAD_DIR = "private/csv_processed/";
@@ -75,8 +77,8 @@ public class UserService {
         File dest = new File(imagePath);
         
         Files.copy(multipartFile.getInputStream(), dest.toPath());
-        userRepository.updateUserImagePath(id, imagePath);
-
+        int t = userRepository.updateUserImagePath(id, imagePath);
+        
         return imagePath;
     }
 
@@ -85,7 +87,12 @@ public class UserService {
         String[] lines = content.split("\n");
         int count = 0;
 
-        for (String line : lines) {
+        int startIndex = 0;
+        if (lines.length > 0 && lines[0].toLowerCase().contains("name") && lines[0].toLowerCase().contains("email")) {
+            startIndex = 1;
+        }
+        for (int i = startIndex; i < lines.length; i++) {
+            String line = lines[i];
             String[] fields = line.split(",");
             if (fields.length >= 4) {
                 String name = fields[0].trim();
@@ -120,25 +127,26 @@ public class UserService {
     public int uploadJsonFile(MultipartFile file) throws Exception {
         JsonNode root = objectMapper.readTree(file.getInputStream());
 
-        String control = root.path("control").asText();
-        int totalCount = root.path("count").asInt();
-        JsonNode usersNode = root.path("users");
+        JsonNode data = root.path("data");
+        String control = data.path("control").asText();
+        int totalCount = data.path("count").asInt();
+        JsonNode usersNode = data.path("users");
 
         if (!"OK".equalsIgnoreCase(control)) {
-            return 0;
+            return 33;
         }
 
         if (!usersNode.isArray()) {
-            return 0;
+            return 22;
         }
 
         if (usersNode.size() != totalCount) {
-            return 0;
+            return 11;
         }
 
         int count = 0;
         for (JsonNode userNode : usersNode) {
-            String username = userNode.path("username").asText(null);
+            String username = userNode.path("name").asText(null);
             String description = userNode.path("description").asText(null);
             String email = userNode.path("email").asText(null);
             String password = userNode.path("password").asText(null);
@@ -156,6 +164,16 @@ public class UserService {
             userRepository.addUser(user);
             count++;
         }
+        
+        File upload_dir = new File(JSON_UPLOAD_DIR);
+        if (!upload_dir.exists()) {
+            upload_dir.mkdirs();
+        }
+        String originalFilename = file.getOriginalFilename();
+        String jsonPath = JSON_UPLOAD_DIR + "upload_" + System.currentTimeMillis() + "_" + originalFilename;
+        File dest = new File(jsonPath);
+        Files.copy(file.getInputStream(), dest.toPath());
+
         return count;
     }
 }

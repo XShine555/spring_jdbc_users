@@ -25,6 +25,7 @@ public class UserRepository {
             user.setDescription(rs.getString("description"));
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
+            user.setImage_path(rs.getString("image_path"));
             return user;
         }
     }

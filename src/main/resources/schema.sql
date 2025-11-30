@@ -3,8 +3,9 @@ CREATE TABLE users (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     description VARCHAR(100) NOT NULL,
-    email VARCHAR(100),
+    email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
+    image_path VARCHAR(500),
     ultim_acces TIMESTAMP NULL,
     data_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
