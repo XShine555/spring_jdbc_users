@@ -8,6 +8,7 @@ public class User {
     private String description;
     private String email;
     private String password;
+    private String image_path = "";
     private Timestamp ultimAcces = null;
     private Timestamp dataCreated = new Timestamp(System.currentTimeMillis());
     private Timestamp dataUpdated = new Timestamp(System.currentTimeMillis());
@@ -85,6 +86,14 @@ public class User {
 
     public void setDataUpdated(Timestamp dataUpdated) {
         this.dataUpdated = dataUpdated;
+    }
+
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
     }
 
     @Override
