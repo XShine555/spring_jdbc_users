@@ -1,0 +1,12 @@
+[2025-12-09 16:40:38] - INFO - UserController - postUser - Nou usuari creat: User{id=0, name='Iker', description='...', email='iker@gmail.com', password='123', image_path='', ultimAcces='null', dataCreated='2025-12-09 16:40:38.34', dataUpdated='2025-12-09 16:40:38.34'}
+[2025-12-09 16:40:41] - INFO - UserController - getUsers - Obtenint tots els usuaris
+[2025-12-09 16:40:43] - ERROR - UserController - getUserById - L'usuari amb ID 10 no existeix
+[2025-12-09 16:40:47] - ERROR - UserController - getUserById - L'usuari amb ID 1 no existeix
+[2025-12-09 16:40:52] - INFO - UserController - getUserById - Obtenint usuari amb ID: 2
+[2025-12-09 16:40:57] - INFO - UserController - updateUser - Usuari amb ID 2 actualitzat
+[2025-12-09 16:41:06] - INFO - UserController - patchUserNom - Nom de l'usuari amb ID 2 actualitzat a Pepe
+[2025-12-09 16:41:13] - INFO - UserController - deleteUser - Usuari amb ID 2 eliminat
+[2025-12-09 16:41:17] - INFO - UserController - postUser - Nou usuari creat: User{id=0, name='Iker', description='...', email='iker@gmail.com', password='123', image_path='', ultimAcces='null', dataCreated='2025-12-09 16:41:17.55', dataUpdated='2025-12-09 16:41:17.55'}
+[2025-12-09 16:41:21] - INFO - UserController - uploadImage - Imatge pujada per l'usuari amb ID 3: private/images/user_3_library_music_24dp.svg
+[2025-12-09 16:41:26] - INFO - UserController - uploadCSV - Fitxer CSV pujat amb 2 usuaris nous
+[2025-12-09 16:41:28] - INFO - UserController - uploadJSON - Fitxer JSON pujat amb 2 usuaris nous
